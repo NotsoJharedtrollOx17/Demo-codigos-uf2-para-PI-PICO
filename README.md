@@ -5,7 +5,7 @@
 
 ### Resumen
 Aqui se tienen dos codigos ejemplo de autoria propia donde se les hicieron las modificaciones pertinentes para poder ser compilados
-al archivo .uf2 que se necesita para ejecutarse en la Raspberry PI PICO. El principal detalle es tener todo en orden y tener lista la instalacion
+al archivo .uf2 que se necesita para ejecutarse en la Raspberry PI PICO. El principal detalle es tener todo en orden (incluyendo el paquete `minicom`) y tener la instalacion
 del SDK que el [PDF Adjunto (p. 80)](https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf) indica, para no batallar con el resto del tutorial.
 
 ---
@@ -34,6 +34,7 @@ stdio_init_all(); //uso de librerias PI PICO
 
 while(true) {
 //codigo que queremos desplegar en conexion serial en Linux
+sleep_ms(2000) //retraso 
 }
 ```
 
@@ -54,3 +55,19 @@ el archivo hacia la PI PICO, la cierra y el codigo ejecutable ya se encuentra ej
 
 ![build_001](https://user-images.githubusercontent.com/99265478/170375728-7b735011-0470-4c2a-b9ba-3e249c975989.png)
 
+#### Paso 5: Muestra de la ejecucion del programa en consola
+Teniendo conectada la PI PICO a la computadora, comprobamos la conexion USB serial por medio del comando:
+```bash
+sudo dmesg | grep tty
+```
+El puerto serial debe aparecer con terminacion `ACM0`
+
+![abrah@abrah: ~-Pictures_001](https://user-images.githubusercontent.com/99265478/170378091-86fd5dd7-2d9c-46e8-94c6-71e5dd03f7e0.png)
+
+De ser asi, escribimos:
+```bash
+sudo minicom -b 115200 -o -D /dev/ttyACM0
+```
+Para desplegar la salida del programa en la consola:
+
+![abrah@abrah: ~-Pictures_002](https://user-images.githubusercontent.com/99265478/170379422-e3c015c3-2146-40f3-96f8-86a9f07ffa9e.png)
