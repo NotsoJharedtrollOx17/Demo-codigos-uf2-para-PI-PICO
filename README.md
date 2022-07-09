@@ -34,7 +34,7 @@ stdio_init_all(); //uso de librerias PI PICO
 
 while(true) {
 //codigo que queremos desplegar en conexion serial en Linux
-sleep_ms(2000) //retraso 
+sleep_ms(2000); //retraso 
 }
 ```
 
